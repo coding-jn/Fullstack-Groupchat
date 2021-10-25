@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+    <title>Groupchat</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header text-center">
+        <h1></span>Welcome <%= user.local.email %>!</h1>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    </div>
+
+    <div class="row">
+
+        <!-- LOCAL INFORMATION -->
+        <div class="col-sm-6">
+            <div class="well">
+              <h3>Messages</h3>
+              <ul class="messages">
+              <button type="submit" id='deleteAll'>Delete Converation</button>
+              <% for(var i=0; i<messages.length; i++) {%>
+                <li class="message">
+                  <span><%= messages[i].name %></span>
+                  <span><%= messages[i].msg %></span>
+                  <span><%= messages[i].heart %></span>
+                  <span><i class="far fa-heart" aria-hidden="true"></i></span>
+                  <span><i class="fas fa-trash" aria-hidden="true"></i></span>
+                </li>
+              <% } %>
+              </ul>
+            </div>
+        </div>
+        
+      <div class="col-sm-6">
+        <% if (user.local.email) { %>
+          <form action="/messages" method="POST">
+            <input type="text" value="<%= user.local.email %>:" name="name" readonly='readonly'>
+            <textarea placeholder="message" name="msg"></textarea>
+            <button type="submit">Send</button>
+          </form>
+        <% } %>
+      </div>
+
+
+</div>
+
+<script src="main.js"></script>
+
+</body>
+</html>
